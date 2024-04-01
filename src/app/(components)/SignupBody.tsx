@@ -12,12 +12,24 @@ export default function SignupBody() {
   });
 
   const registerUser = async (e: { preventDefault: () => void }) => {
-    e.preventDefault()
+    e.preventDefault();
     axios.post('/api/registerApi', registerdata)
-    .then(() => setregisterData({first_name:'',last_name:'', email:'',password:''}))
-    .then(() => toast.success('Registration is successful! Proceed to login🎉'))
-    .catch(() => toast.error('Something went wrong😔!'))
- }
+        .then(() => {
+            // Clear the registerData state
+            setregisterData({first_name:'',last_name:'', email:'',password:''});
+            // Log the success information to the console
+            console.log('Registration successful! Proceed to login.');
+            // Show a success toast message
+            toast.success('Registration is successful! Proceed to login🎉');
+        })
+        .catch(() => {
+            // Show an error toast message
+            console.log('error');
+
+            toast.error('Something went wrong😔!');
+        });
+};
+
 
 
   return (
